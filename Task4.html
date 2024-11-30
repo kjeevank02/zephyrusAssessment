@@ -1,0 +1,109 @@
+<!-- Problem-Solving Approach:
+
+Understanding the Requirement:
+The goal is to dynamically change the text of a heading when the user clicks a button.
+Provide a seamless and responsive user interaction with clear feedback.
+
+Designing the Solution:
+HTML Structure:
+A centered container that includes:
+A h1 element to display the heading.
+A button to trigger the text change.
+
+CSS Styling:
+Basic styling for a clean and modern look.
+Hover effect for the button to improve user experience.
+
+JavaScript Functionality:
+Event handling to capture button clicks.
+DOM manipulation to update the text content of the heading dynamically.
+
+Implementation Details:
+
+Event Handling:
+Used addEventListener() to attach a click event listener to the button.
+
+Dynamic Text Update:
+On button click, the textContent property of the h1 element is updated with new text ("Heading Text Changed!").
+
+Separation of Concerns:
+HTML handles structure, CSS handles styling, and JavaScript manages dynamic behavior, ensuring maintainability.
+
+Handling Edge Cases:
+
+Repeated Button Clicks:
+The heading text is overwritten with the same text on repeated clicks. This behavior is intentional and ensures consistency.
+
+Empty Heading Initially:
+If the h1 tag is initially empty or has no meaningful text, the program still works as expected by setting a new text when the button is clicked.
+
+Accessibility:
+The button is styled with sufficient contrast and hover effects for better usability.
+Logical focus order and descriptive content ensure the program is accessible.
+
+Responsiveness:
+The design is responsive and centered, ensuring the UI is user-friendly on various devices and screen sizes.
+-->
+<html>
+<head>
+    <title>Change Heading Text</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="heading">Welcome to My Page!</h1>
+        <button id="changeTextButton">Change Heading</button>
+    </div>
+
+    <script>
+        // Get references to the heading and button
+        const heading = document.getElementById('heading');
+        const changeTextButton = document.getElementById('changeTextButton');
+
+        // Add a click event listener to the button
+        changeTextButton.addEventListener('click', () => {
+            heading.textContent = "Heading Text Changed!";
+        });
+    </script>
+</body>
+</html>

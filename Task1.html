@@ -1,0 +1,185 @@
+<!--
+Problem-Solving Approach for Task1:
+
+Understanding the Requirement:
+The task is to reverse a string entered by the user.
+Ensure that the solution is user-friendly and intuitive.
+
+Designing the Solution:
+Created a responsive HTML layout with a text input, a button, and an output area for displaying the reversed string.
+Used a JavaScript function to handle the string reversal logic by splitting the string into an array, reversing the array, and joining it back to a string.
+
+Implementation Details:
+The reverseString function encapsulates the core logic of reversing the string, making the code reusable and maintainable.
+Event listeners are used to handle button clicks, ensuring user interaction triggers the reversal process.
+
+Providing Feedback to the User:
+Display meaningful feedback in the output area when the input is valid or invalid.
+Used color coding for error messages (red) and successful outputs (green) for better user experience.
+
+Handling Edge Cases:
+
+Empty Input:
+Checked if the input string is empty or only contains whitespace.
+Displayed an appropriate error message: "Please enter a valid string."
+Whitespace Handling:
+
+Used .trim() to eliminate leading and trailing spaces to ensure accurate checks and output.
+
+Special Characters and Numbers:
+The solution works seamlessly for any string, including special characters, numbers, and spaces within the string.
+
+Responsive Design:
+Ensured the interface adapts to various screen sizes using media queries, improving usability across devices.
+
+Long Strings:
+No specific limitations are placed on string length. The program processes long strings effectively, as it relies on JavaScript's robust string handling capabilities.
+-->
+<html>
+
+<head>
+    <title>String Reverser</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .panel {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        .panel h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .panel button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .panel button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            .panel {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .panel h1 {
+                font-size: 18px;
+            }
+
+            .panel button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1200px) {
+            .panel {
+                width: 400px;
+            }
+
+            .panel h1 {
+                font-size: 22px;
+            }
+
+            .panel button {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 1201px) {
+            .panel {
+                width: 500px;
+            }
+
+            .panel h1 {
+                font-size: 24px;
+            }
+
+            .panel button {
+                font-size: 18px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <h1>String Reverser</h1>
+        <input type="text" id="userString" placeholder="Please Enter a String..." />
+        <button id="reverseButton">Reverse String</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Function to reverse a string
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+
+        // Get references to the input, button, and output elements
+        const stringInput = document.getElementById('userString');
+        const reverseButton = document.getElementById('reverseButton');
+        const outputDiv = document.getElementById('output');
+
+        // Add a click event listener to the button
+        reverseButton.addEventListener('click', () => {
+            // Get the value of the input field
+            const userInput = stringInput.value;
+
+            // Check if the input is not empty
+            if (userInput.trim() === "") {
+                outputDiv.textContent = "Please enter a valid string.";
+                outputDiv.style.color = "red";
+            } else {
+                // Reverse the string using the function
+                const reversedString = reverseString(userInput);
+
+                // Display the reversed string
+                outputDiv.textContent = `Reversed String: ${reversedString}`;
+                outputDiv.style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>

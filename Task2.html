@@ -1,0 +1,175 @@
+<!-- 
+
+Problem-Solving Approach
+Understanding the Requirement for Task2:
+
+The task is to implement the classic FizzBuzz problem, where numbers from 1 to 100 are displayed, but:
+Numbers divisible by 3 are replaced with "Fizz."
+Numbers divisible by 5 are replaced with "Buzz."
+Numbers divisible by both 3 and 5 are replaced with "FizzBuzz."
+All other numbers are displayed as themselves.
+Additionally, the Fizz, Buzz, and FizzBuzz results should be color-coded to improve readability and user experience.
+
+Designing the Solution:
+HTML Structure:
+A button to trigger the FizzBuzz logic.
+An output area to display the results.
+
+CSS Styling:
+Styles to center the panel, create a responsive interface, and apply colors to different categories (Fizz, Buzz, FizzBuzz, and regular numbers).
+JavaScript Functionality:
+A function fizzBuzz() to generate the FizzBuzz output for numbers 1 to 100.
+Each number is checked against divisibility by 3, 5, and both, and the appropriate output is created using <span> elements with class names for styling.
+
+Implementation Details:
+FizzBuzz Logic:
+The function loops from 1 to 100.
+For each number:
+If divisible by both 3 and 5, "FizzBuzz" is added to the results array.
+If divisible by 3, "Fizz" is added.
+If divisible by 5, "Buzz" is added.
+Otherwise, the number itself is added.
+
+Rendering Output:
+The results are displayed in the output area by joining the results with <br> tags to create line breaks between each result.
+Each result is wrapped in a span tag with a specific class for color-coding.
+
+Handling Edge Cases:
+Divisibility:
+The logic ensures that numbers divisible by both 3 and 5 are prioritized to display "FizzBuzz" first.
+
+Output Length:
+The results for 100 numbers are properly formatted and displayed in the output area with a scrollable container if the content exceeds the available space.
+
+Responsiveness:
+The CSS ensures that the design is responsive, adjusting for different screen sizes.
+
+Handling Edge Cases:
+
+Divisibility Check:
+The program ensures the correct order of checks:
+First, checks for divisibility by both 3 and 5 (FizzBuzz).
+Then checks for divisibility by 3 (Fizz).
+Finally, checks for divisibility by 5 (Buzz).
+This ensures "FizzBuzz" is displayed where applicable and not split between "Fizz" and "Buzz."
+
+No Results:
+Since the range is from 1 to 100, there's no case where no results are generated.
+The program always outputs a list of 100 items.
+
+Scrolling the Output:
+If the results exceed the available height, the output div has a scrollable container, which ensures the display remains user-friendly without cluttering the page.
+
+Performance:
+The function efficiently handles the loop of 100 iterations, and the results are dynamically generated and displayed. This approach is scalable for larger ranges as well.
+-->
+<html>
+<head>
+    <title>FizzBuzz with Colors</title>
+    <style>
+        /* Centering the panel and styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .panel {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        .panel h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .panel button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        /* Colors for FizzBuzz results */
+        .fizz {
+            color: #FF6347; /* Light coral for Fizz */
+        }
+
+        .buzz {
+            color: #32CD32; /* Lime green for Buzz */
+        }
+
+        .fizzbuzz {
+            color: #1E90FF; /* Dodger blue for FizzBuzz */
+        }
+
+        .number {
+            color: #8A2BE2; /* Blue violet for regular numbers */
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>FizzBuzz with Colors</h1>
+        <button id="runButton">Run FizzBuzz</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Function to generate FizzBuzz output
+        function fizzBuzz() {
+            const results = [];
+            for (let i = 1; i <= 100; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    results.push(`<span class="fizzbuzz">FizzBuzz</span>`);
+                } else if (i % 3 === 0) {
+                    results.push(`<span class="fizz">Fizz</span>`);
+                } else if (i % 5 === 0) {
+                    results.push(`<span class="buzz">Buzz</span>`);
+                } else {
+                    results.push(`<span class="number">${i}</span>`);
+                }
+            }
+            return results;
+        }
+
+        // Get references to the button and output elements
+        const runButton = document.getElementById('runButton');
+        const outputDiv = document.getElementById('output');
+
+        // Add a click event listener to the button
+        runButton.addEventListener('click', () => {
+            const results = fizzBuzz(); // Get the FizzBuzz output
+            outputDiv.innerHTML = results.join("<br>"); // Display results with colored spans
+        });
+    </script>
+</body>
+</html>

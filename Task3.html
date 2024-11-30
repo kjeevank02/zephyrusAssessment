@@ -1,0 +1,170 @@
+<!-- 
+Problem-Solving Approach:
+
+Understanding the Requirement:
+The goal is to determine whether a user-provided integer is "Even" or "Odd."
+Ensure the program validates user input and handles edge cases gracefully.
+Provide user-friendly feedback, including styling to differentiate between results and errors.
+
+Designing the Solution:
+
+HTML Structure:
+A centered panel contains an input field, a button, and an output area for results.
+
+CSS Styling:
+Styling for even and odd results using distinct colors (Lime Green for even and Light Coral for odd) and bold text.
+Error messages are styled in red for clear visibility.
+
+JavaScript Functionality:
+A function evenOrOdd() determines the parity of the input number using the modulo operator.
+Input validation ensures only valid integers are processed.
+
+Implementation Details:
+
+Validation:
+The input is trimmed and checked for empty values or non-numeric characters using isNaN().
+Error messages are displayed if the input is invalid.
+
+Determining Even/Odd:
+If the input is valid, it is parsed as an integer using parseInt().
+The parity is determined by checking the remainder of division by 2 (number % 2 === 0).
+
+Dynamic Styling:
+The outputDiv's className is dynamically updated to apply appropriate styles for even, odd, or error messages.
+
+Displaying Results:
+
+For valid inputs, the result (e.g., "The number 4 is Even.") is displayed with proper styling.
+For invalid inputs, an error message ("Please enter a valid integer.") is displayed in red.
+
+Handling Edge Cases:
+
+Empty Input:
+If the input field is empty, the program displays an error message: "Please enter a valid integer."
+
+Non-Numeric Input:
+Inputs such as letters, symbols, or whitespace are validated using isNaN().
+An error message is displayed for non-numeric values.
+
+Floating-Point Numbers:
+While the input field restricts the user to numeric input, the program explicitly converts input to an integer using parseInt(), truncating any fractional part.
+
+Negative Numbers:
+The solution handles negative integers correctly (e.g., -3 is "Odd").
+
+Large Numbers:
+The modulo operation works seamlessly with large integers, ensuring correct results for any number within JavaScript's numeric range.
+-->
+
+<html>
+<head>
+    <title>Even or Odd</title>
+    <style>
+        /* Centering the panel and styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .panel {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        .panel h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .panel button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .panel button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        /* Styling for even and odd outputs */
+        .even {
+            color: #32CD32; /* Lime green for Even */
+            font-weight: bold;
+        }
+
+        .odd {
+            color: #FF6347; /* Light coral for Odd */
+            font-weight: bold;
+        }
+
+        /* Error styling */
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Even or Odd Checker</h1>
+        <input type="number" id="userInput" placeholder="Enter an integer..." />
+        <button id="checkButton">Check</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Function to determine if a number is even or odd
+        function evenOrOdd(number) {
+            return number % 2 === 0 ? "Even" : "Odd";
+        }
+
+        // Get references to input, button, and output elements
+        const userInput = document.getElementById('userInput');
+        const checkButton = document.getElementById('checkButton');
+        const outputDiv = document.getElementById('output');
+
+        // Add click event listener to the button
+        checkButton.addEventListener('click', () => {
+            const inputValue = userInput.value.trim();
+
+            // Validate input
+            if (inputValue === "" || isNaN(inputValue)) {
+                outputDiv.textContent = "Please enter a valid integer.";
+                outputDiv.className = "error"; // Apply error styling
+            } else {
+                const number = parseInt(inputValue, 10);
+                const result = evenOrOdd(number);
+                outputDiv.textContent = `The number ${number} is ${result}.`;
+                outputDiv.className = result.toLowerCase(); // Apply 'even' or 'odd' styling
+            }
+        });
+    </script>
+</body>
+</html>
